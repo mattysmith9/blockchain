@@ -17,8 +17,11 @@ class PubSub {
     this.blockchain = blockchain;
     this.transactionPool = transactionPool;
     this.wallet = wallet;
+
     this.pubnub = new PubNub(credentials);
+
     this.pubnub.subscribe({ channels: [Object.values(CHANNELS)] });
+
     this.pubnub.addListener(this.listener());
   }
 
@@ -50,7 +53,6 @@ class PubSub {
         console.log(
           `Message received. Channel: ${channel}. Message: ${message}`
         );
-
         const parsedMessage = JSON.parse(message);
 
         switch (channel) {
