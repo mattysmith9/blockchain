@@ -17,7 +17,7 @@ describe('Transaction', () => {
   });
 
   describe('outputMap', () => {
-    it('has and `outputMap`', () => {
+    it('has an `outputMap`', () => {
       expect(transaction).toHaveProperty('outputMap');
     });
 
@@ -25,7 +25,7 @@ describe('Transaction', () => {
       expect(transaction.outputMap[recipient]).toEqual(amount);
     });
 
-    it('outputs the remaining balance for the `sender`', () => {
+    it('outputs the remaining balance for the `senderWallet`', () => {
       expect(transaction.outputMap[senderWallet.publicKey]).toEqual(
         senderWallet.balance - amount
       );

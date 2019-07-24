@@ -1,10 +1,13 @@
 const uuid = require('uuid/v1');
+const { verifySignature } = require('../utilities');
 
 class Transaction {
-  constructor({ senderWallet, recipient, amount }) {
+  constructor({ senderWallet, recipient, amount, outputMap, input }) {
     this.id = uuid();
-    this.outputMap = this.createOutputMap({ senderWallet, recipient, amount });
-    this.input = this.createInput();
+    this.outputMap =
+      outputMap || this.createOutputMap({ senderWallet, recipient, amount });
+    this.input =
+      input || this.createInput({ senderWallet, outputMap: this.outputMap });
   }
 
   createOutputMap({ senderWallet, recipient, amount }) {
