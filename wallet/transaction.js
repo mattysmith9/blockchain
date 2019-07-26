@@ -29,6 +29,34 @@ class Transaction {
   }
 
   static validTransaction(transaction) {
+    const {
+      input: { address, amount, signature },
+      outputMap
+    } = transaction;
+
+    const outputTotal = Object.values(outputMap).reduce(
+      (total, outputAmount) => total + outputAmount
+    );
+
+    if (amount !== outputTotal) {
+      console.error(`Invalid transaction from ${address}`);
+
+      return false;
+    }
+
+    if (
+      !verifySignature({
+        publicKey: address,
+        amount,
+        data: outputMap,
+        signature
+      })
+    ) {
+      console.error(`Invalid signature from ${address}`);
+
+      return false;
+    }
+
     return true;
   }
 }
