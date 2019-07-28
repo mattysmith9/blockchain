@@ -25,7 +25,6 @@ app.post('/api/mine', (req, res) => {
   const { data } = req.body;
 
   blockchain.addBlock({ data });
-
   pubsub.broadcastChain();
 
   res.redirect('/api/blocks');
@@ -33,18 +32,26 @@ app.post('/api/mine', (req, res) => {
 
 app.post('/api/transact', (req, res) => {
   const { amount, recipient } = req.body;
-  let transaction;
+  let transaction = transactionPool.existingTransaction({
+    inputAddress: wallet.publicKey
+  });
 
   try {
-    transaction = wallet.createTransaction({ recipient, amount });
+    if (transaction) {
+      transaction.update({ senderWallet: wallet, recipient, amount });
+    } else {
+      transaction = wallet.createTransaction({ recipient, amount });
+    }
   } catch (error) {
     return res.status(400).json({ type: 'error', message: error.message });
   }
 
   transactionPool.setTransaction(transaction);
-  console.log('transactionPool', transactionPool);
-
   res.json({ type: 'success', transaction });
+});
+
+app.get('/api/transaction-pool-map', (req, res) => {
+  res.json(transactionPool.transactionMap);
 });
 
 const syncChains = () => {
