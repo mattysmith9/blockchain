@@ -1,7 +1,7 @@
 {
   "name": "blockchain",
   "version": "1.0.0",
-  "description": "Building a blockchain and crypto",
+  "description": "Building a blockchain and crypto-currency",
   "main": "index.js",
   "scripts": {
     "test": "jest --watchAll",
@@ -12,8 +12,16 @@
   "jest": {
     "testEnvironment": "node"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": [
+    "blockchain",
+    "crypto",
+    "crypto-currency",
+    "react",
+    "node",
+    "express",
+    "heroku"
+  ],
+  "author": "Matty Smith",
   "license": "ISC",
   "devDependencies": {
     "cross-env": "^5.2.0",
