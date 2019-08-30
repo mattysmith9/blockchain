@@ -6,6 +6,7 @@ const PubSub = require('./app/pubsub');
 const TransactionPool = require('./wallet/transactionPool');
 const Wallet = require('./wallet');
 const TransactionMiner = require('./app/transactionMiner');
+
 const app = express();
 const blockchain = new Blockchain();
 const transactionPool = new TransactionPool();
@@ -38,7 +39,6 @@ app.post('/api/mine', (req, res) => {
 
 app.post('/api/transact', (req, res) => {
   const { amount, recipient } = req.body;
-
   let transaction = transactionPool.existingTransaction({
     inputAddress: wallet.publicKey
   });
@@ -54,9 +54,7 @@ app.post('/api/transact', (req, res) => {
   }
 
   transactionPool.setTransaction(transaction);
-
   pubsub.broadcastTransaction(transaction);
-
   res.json({ type: 'success', transaction });
 });
 
@@ -88,10 +86,12 @@ const syncWithRootState = () => {
     (error, response, body) => {
       if (!error && response.statusCode === 200) {
         const rootTransactionPoolMap = JSON.parse(body);
+
         console.log(
           'replace transaction pool map on a sync with',
           rootTransactionPoolMap
         );
+
         transactionPool.setMap(rootTransactionPoolMap);
       }
     }
