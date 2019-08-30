@@ -6,7 +6,6 @@ const PubSub = require('./app/pubsub');
 const TransactionPool = require('./wallet/transactionPool');
 const Wallet = require('./wallet');
 const TransactionMiner = require('./app/transactionMiner');
-
 const app = express();
 const blockchain = new Blockchain();
 const transactionPool = new TransactionPool();
