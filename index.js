@@ -11,7 +11,6 @@ const Wallet = require('./wallet');
 const TransactionMiner = require('./app/transactionMiner');
 
 const isDevelopment = process.env.ENV === 'development';
-
 const app = express();
 const blockchain = new Blockchain();
 const transactionPool = new TransactionPool();
