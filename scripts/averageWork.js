@@ -17,10 +17,10 @@ for (let i = 0; i < 1000; i++) {
   timeDifference = nextTimestamp - preTimestamp;
   times.push(timeDifference);
   averageTime = times.reduce((total, num) => total + num) / times.length;
-  
+
   console.log(
-    `Time to mine block: ${timeDifference}ms. Difficulty: ${
-      nextBlock.difficulty
-    }. Average time: ${averageTime}ms`
+    `Time to mine block: ${timeDifference}ms. 
+     Difficulty: ${nextBlock.difficulty}. 
+     Average time: ${averageTime}ms`
   );
 }

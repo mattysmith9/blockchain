@@ -1,3 +1,5 @@
+'use strict';
+
 const EC = require('elliptic').ec;
 const cryptoHash = require('./cryptoHash');
 

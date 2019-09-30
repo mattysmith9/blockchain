@@ -1,3 +1,5 @@
+'use strict'
+
 const { STARTING_BALANCE } = require('../config');
 const Transaction = require('./transaction');
 const { ec, cryptoHash } = require('../utilities');
