@@ -12,8 +12,8 @@ const Transaction = ({ transaction }) => {
       {recipients.map(recipient => {
         return (
           <div key={recipient}>
-            To: {`${recipient.substring(0, 20)}...`} | Sent:{' '}
-            {outputMap[recipient]}
+            To: {`${recipient.substring(0, 20)}...`} | 
+            Sent: {outputMap[recipient]}
           </div>
         );
       })}
