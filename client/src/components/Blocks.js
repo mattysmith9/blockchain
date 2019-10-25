@@ -14,7 +14,7 @@ class Blocks extends Component {
     console.log('this.state', this.state);
     return (
       <div>
-        <h3>Blocks</h3>
+        <h3>Blocks to Block</h3>
         {this.state.blocks.map(block => {
           return <Block key={block.hash} block={block} />;
         })}
