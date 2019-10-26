@@ -17,7 +17,6 @@ class App extends Component {
       <div className="App">
         <div>Welcome to the fucking Blockchain...</div>
         <br />
-       
         <div className="WalletInfo">
           <div>Address: {address}</div>
           <div>Balance: {balance}</div>
